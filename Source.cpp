@@ -1,91 +1,55 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
-class Person
+const int n = 2;
+class Attributes
 {
-private:
 	string name;
-	int age;
-	float height, weight;
+	int instance;
+	bool multiInstance;
+	string value;
+public: void SetAttributes()
+{
+	cout << "Enter Atribute name: ";
+	cin >> name;
+
+	cout << "Enter Atribute instance: ";
+	cin >> instance;
+
+	cout << "Enter Atribute multiInstance: ";
+	cin >> multiInstance;
+
+	cout << "Enter Atribute value: ";
+	cin >> value;
+}
+};
+class Component
+{
+	string name;
+	string source;
+	Attributes attribute[n];
+
 public:
-	//constructor
-	Person(string n, int a, float h, float w)
+	void SetComponent()
 	{
-		cout << "===Constructor call===\n\n";
-		name = n;
-		age = a;
-		height = h;
-		weight = w;
+		cout << "Enter Component name: ";
+		cin >> name;
+		cout << "Enter Component source: ";
+		cin >> source;
 	}
-	//set
-	void SetName(string n)
+	void SetAttributes()
 	{
-		name = n;
-	}
-	void SetAge(int a)
-	{
-		age = a;
-	}
-	void SetHeight(float h)
-	{
-		height = h;
-	}
-	void SetWeight(float w)
-	{
-		weight = w;
-	}
-
-	//get
-	string GetName()
-	{
-		return name;
-	}
-	int GetAge()
-	{
-		return age;
-	}
-	float GetHeight()
-	{
-		return height;
-	}
-	float GetWeight()
-	{
-		return weight;
-	}
-
-	//other functions
-	void print()
-	{
-		cout << "Name: " << name << endl;
-		cout << "Age: " << age << endl;
-		cout << "Height: " << height << endl;
-		cout << "Weight: " << weight << endl;
-	}
-
-	//destructor
-	~Person()
-	{
-		cout << "\n===Destructor call===" << endl;
-		//Деструктор нужен только для динамических масивов. Обычные переменные удалить в деструкторе нельзя.
-
-		/*delete& name;
-		delete& age;
-		delete& height;
-		delete& weight;*/
+		for (int i = 0; i < n; i++)
+		{
+			cout << "=====Attribute в„– " << i + 1 << "=====" << endl;
+			attribute[i].SetAttributes();
+		}
 	}
 };
 
-int main()
+void main()
 {
-	Person p("Roman", 17, 175.6, 65.2);
-
-	cout << "print function:" << endl;
-	p.print();
-
-	cout << "\nget|set" << endl;
-	cout << "Name-" << p.GetName() << endl;
-	cout << "Age-" << p.GetAge() << endl;
-	p.SetHeight(190);
-	cout << "Height-" << p.GetHeight() << endl;
-	cout << "Weight-" << p.GetWeight() << endl;
-
+	Component comp;
+	comp.SetComponent();
+	comp.SetAttributes();
+	cout << endl << "Work finished!" << endl;
 }
